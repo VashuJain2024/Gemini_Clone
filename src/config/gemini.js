@@ -4,18 +4,7 @@ import {
     GoogleGenerativeAI
 } from "@google/generative-ai";
 
-const getApiKey = async () => {
-    try {
-        const response = await fetch("http://localhost:5000/get-api-key");
-        const data = await response.json();
-        return data.apiKey;
-    } catch (error) {
-        console.error("Error fetching API Key:", error);
-    }
-};
-getApiKey().then(apiKey => {
-    console.log("Secure API Key:", apiKey);
-});
+const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
